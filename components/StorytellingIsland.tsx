@@ -6,8 +6,8 @@ import { Float, Environment } from "@react-three/drei";
 import * as THREE from "three";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShieldCheck, Truck, Warehouse, CheckCircle2, ChevronDown, Award } from "lucide-react";
-
 import { useMemo } from "react";
+import Image from "next/image";
 
 // 3D Stylized Bottle Component using smooth Lathe Geometry
 function StylizedBottle({ progress }: { progress: number }) {
@@ -246,6 +246,15 @@ const CHECKPOINTS = [
   },
 ];
 
+const BACKGROUND_IMAGES = [
+  "/images/control_center_tech.png",  // 1. Production line
+  "/images/warehouse_automated.png",   // 2. Storage racks
+  "/images/fleet_truck_close.png",    // 3. Fleet loading
+  "/images/hero_oman_transit.png",    // 4. Highway transit
+  "/images/warehouse_automated.png",   // 5. Retail intake
+  "/images/control_center_tech.png",  // 6. Consumer experience
+];
+
 export default function StorytellingIsland() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
@@ -394,8 +403,21 @@ export default function StorytellingIsland() {
       <div className="sticky top-0 h-screen w-full flex flex-col md:flex-row items-center justify-between overflow-hidden">
         
         {/* WebGL Canvas viewport */}
-        <div className="w-full md:w-1/2 h-[50vh] md:h-screen relative z-10 bg-chamber/10">
-          <Canvas camera={{ position: [0, 0, 3], fov: 45 }} shadows>
+        <div className="w-full md:w-1/2 h-[50vh] md:h-screen relative z-10 bg-chamber/5 overflow-hidden">
+          {/* Panoramic distribution scene background image transition */}
+          <div className="absolute inset-0 z-0 opacity-25 pointer-events-none transition-all duration-700 ease-in-out">
+            <Image
+              src={BACKGROUND_IMAGES[activeStage] || "/images/hero_oman_transit.png"}
+              alt="Logistics background scene"
+              fill
+              className="object-cover filter grayscale contrast-125 brightness-50 transition-all duration-700 ease-in-out scale-105"
+              priority={activeStage === 0}
+            />
+          </div>
+          {/* Subtle vignette/shading overlays */}
+          <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian z-1 pointer-events-none" />
+          
+          <Canvas camera={{ position: [0, 0, 3], fov: 45 }} shadows className="relative z-2">
             <ambientLight intensity={0.55} />
             
             {/* Main high-key spotlight */}
