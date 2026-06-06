@@ -327,7 +327,7 @@ export default function RfqForm() {
                     RFQ Received Successfully
                   </h3>
                   <p className="font-sans text-sm text-silver mt-2 max-w-md mx-auto leading-relaxed">
-                    Thank you, Salim. Your reference number is <strong>OBL-2026-8902</strong>. A logistics account coordinator has been assigned to evaluate your requirements and will reach out shortly.
+                    Thank you, Salim. Your reference number is <strong>YAC-2026-8902</strong>. A logistics account coordinator has been assigned to evaluate your requirements and will reach out shortly.
                   </p>
                 </div>
                 <button

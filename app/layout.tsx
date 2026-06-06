@@ -17,12 +17,12 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Oman Beverage Logistics (OBL) | Cold Chain & FMCG Distribution",
-  description: "Oman's premier multi-temperature beverage logistics provider. Delivering Coca-Cola and global FMCG brands nationwide with cold-chain precision and real-time WMS telemetry.",
-  keywords: ["beverage logistics Oman", "cold chain Muscat", "FMCG distribution Oman", "refrigerated transport Oman", "automated warehouse Muscat"],
+  title: "Al Yanabeea Al Adabah Logistics (YAC) | Cold Chain & FMCG Distribution",
+  description: "Oman's premier multi-temperature cold chain logistics provider. Delivering global FMCG brands nationwide with cold-chain precision and real-time WMS telemetry.",
+  keywords: ["Al Yanabeea Al Adabah Logistics", "YAC logistics", "beverage logistics Oman", "cold chain Muscat", "FMCG distribution Oman", "refrigerated transport Oman", "automated warehouse Muscat"],
   openGraph: {
-    title: "Oman Beverage Logistics (OBL) | Cold Chain & FMCG Distribution",
-    description: "Powering Coca-Cola and FMCG brands across Oman with multi-temperature logistics and automated warehousing.",
+    title: "Al Yanabeea Al Adabah Logistics (YAC) | Cold Chain & FMCG Distribution",
+    description: "Powering FMCG brands across Oman with multi-temperature logistics and automated warehousing.",
     type: "website",
     locale: "en_US",
   },

@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, ArrowRight, ShieldCheck } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Header() {
@@ -25,17 +26,14 @@ export default function Header() {
         <div className="flex h-20 items-center justify-between">
           {/* Logo Section */}
           <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="relative flex h-10 w-10 items-center justify-center rounded border border-crimson/30 bg-crimson/10 text-crimson group-hover:border-amber/40 group-hover:bg-amber/10 transition-colors">
-              <ShieldCheck className="h-6 w-6 group-hover:scale-105 transition-transform" />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-display text-lg font-bold tracking-wider text-white group-hover:text-amber transition-colors">
-                OBL LOGISTICS
-              </span>
-              <span className="font-sans text-[10px] tracking-widest text-silver uppercase">
-                Oman Cold Chain
-              </span>
-            </div>
+            <Image
+              src="/images/backlogologistics.png"
+              alt="Al Yanabeea Al Adabah Logistics"
+              width={220}
+              height={44}
+              className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}

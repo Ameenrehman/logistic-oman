@@ -30,7 +30,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/hero_oman_transit.png"
-            alt="OBL fleet driving through Oman"
+            alt="Al Yanabeea Al Adabah Logistics (YAC) fleet driving through Oman"
             fill
             className="object-cover object-right md:object-center"
             priority

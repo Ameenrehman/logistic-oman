@@ -568,7 +568,7 @@ export default function StorytellingIsland() {
           <div className="absolute inset-0 z-0 opacity-20 pointer-events-none transition-all duration-1000 ease-out">
             <Image
               src={BACKGROUND_IMAGES[activeStage] || "/images/hero_oman_transit.png"}
-              alt="OBL logistics center view"
+              alt="YAC logistics center view"
               fill
               className="object-cover transition-all duration-1000 ease-out scale-105 brightness-[0.25] saturate-[0.7]"
               priority={activeStage === 0}
@@ -585,7 +585,7 @@ export default function StorytellingIsland() {
               <span className="h-1.5 w-1.5 rounded-full bg-emerald animate-pulse" />
               <span>COLD CHAIN NETWORK LIVE</span>
             </div>
-            <div>GATE PORTAL: <span className="text-white font-bold">OBL-908-MCT</span></div>
+            <div>GATE PORTAL: <span className="text-white font-bold">YAC-908-MCT</span></div>
             <div>TELEMETRY COMPLIANCE: <span className="text-white font-bold">{(progress * 100).toFixed(1)}%</span></div>
           </div>
 

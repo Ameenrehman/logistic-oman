@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Mail, Phone, MapPin, Award, CheckCircle, ShieldCheck } from "lucide-react";
 
 export default function Footer() {
@@ -19,7 +20,7 @@ export default function Footer() {
   ];
 
   const contact = [
-    { text: "info@oblogistics.om", icon: Mail },
+    { text: "info@yaclogistics.com", icon: Mail },
     { text: "+968 2444 8888", icon: Phone },
     { text: "Al Rusayl Industrial Area, Muscat, Sultanate of Oman", icon: MapPin },
   ];
@@ -31,20 +32,16 @@ export default function Footer() {
           {/* Company Brief & Badges */}
           <div className="flex flex-col gap-6">
             <Link href="/" className="flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded border border-crimson/30 bg-crimson/10 text-crimson">
-                <ShieldCheck className="h-5 w-5" />
-              </div>
-              <div className="flex flex-col">
-                <span className="font-display text-base font-bold tracking-wider text-white">
-                  OBL LOGISTICS
-                </span>
-                <span className="font-sans text-[9px] tracking-widest text-silver uppercase">
-                  Oman Cold Chain
-                </span>
-              </div>
+              <Image
+                src="/images/backlogologistics.png"
+                alt="Al Yanabeea Al Adabah Logistics"
+                width={180}
+                height={36}
+                className="h-9 w-auto object-contain"
+              />
             </Link>
             <p className="font-sans text-sm leading-relaxed text-silver/80">
-              Oman's largest multi-temperature beverage logistics provider. Operating nationwide fleets and automated storage infrastructure to power global FMCG brands.
+              Al Yanabeea Al Adabah Logistics (YAC) is Oman's premier multi-temperature logistics provider. Operating nationwide fleets and automated storage infrastructure to power global FMCG brands.
             </p>
             {/* Certifications row */}
             <div className="flex items-center gap-4 pt-2">
@@ -123,7 +120,7 @@ export default function Footer() {
         {/* Bottom copyright */}
         <div className="border-t border-border-glass/60 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
           <p className="font-sans text-silver/60">
-            &copy; {currentYear} Oman Beverage Logistics Company. All rights reserved.
+            &copy; {currentYear} Al Yanabeea Al Adabah Logistics. All rights reserved.
           </p>
           <div className="flex gap-6 font-sans text-silver/60">
             <Link href="/" className="hover:text-amber transition-colors">Privacy Policy</Link>

@@ -132,7 +132,7 @@ export default function FleetPage() {
                 Telematics & GPS Safety Mandates
               </h2>
               <p className="mt-4 font-sans text-sm text-silver leading-relaxed">
-                Every vehicle in the OBL fleet runs dynamic GPS trackers, route optimization navigation systems, and automated temperature alarm feeds. Dispatch coordinators monitor route deviations and safety triggers in real-time, ensuring shipments arrive on schedule.
+                Every vehicle in the Al Yanabeea Al Adabah Logistics (YAC) fleet runs dynamic GPS trackers, route optimization navigation systems, and automated temperature alarm feeds. Dispatch coordinators monitor route deviations and safety triggers in real-time, ensuring shipments arrive on schedule.
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

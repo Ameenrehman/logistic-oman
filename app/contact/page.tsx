@@ -9,19 +9,19 @@ export default function ContactPage() {
       name: "Muscat Central Headquarters",
       address: "Road 4, Al Rusayl Industrial Area, Muscat, Oman",
       phone: "+968 2444 8888",
-      email: "muscat.ops@oblogistics.om",
+      email: "muscat.ops@yaclogistics.com",
     },
     {
       name: "Sohar Regional Terminal",
       address: "Sohar Industrial City Phase 3, Sohar, Oman",
       phone: "+968 2666 4444",
-      email: "sohar.ops@oblogistics.om",
+      email: "sohar.ops@yaclogistics.com",
     },
     {
       name: "Salalah Southern Depot",
       address: "Raysut Industrial Estate Road 2, Salalah, Oman",
       phone: "+968 2321 5555",
-      email: "salalah.ops@oblogistics.om",
+      email: "salalah.ops@yaclogistics.com",
     },
   ];
 
@@ -92,7 +92,7 @@ export default function ContactPage() {
                 Global Brand Procurement
               </h4>
               <p className="font-sans text-xs text-silver mt-1.5 leading-relaxed">
-                For multinational contract negotiations (FMCG bottling integration, nationwide dedicated supply chains), please contact our corporate relations desk directly at <span className="text-white font-semibold">corp@oblogistics.om</span>.
+                For multinational contract negotiations (FMCG bottling integration, nationwide dedicated supply chains), please contact our corporate relations desk directly at <span className="text-white font-semibold">corp@yaclogistics.com</span>.
               </p>
             </div>
           </div>
