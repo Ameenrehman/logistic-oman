@@ -1,45 +1,93 @@
-# Stage 5: Isolated Three.js Storytelling Island (Oman Cold Chain Intelligence)
+# Stage 5: GSAP ScrollTrigger Storytelling Timeline (Oman Cold Chain Intelligence)
 
-This document summarizes the WebGL rendering engine, narrative checkpoints, dynamic imports, and scroll bindings implemented in `components/StorytellingIsland.tsx`.
-
----
-
-## 1. Scene Mechanics & Render Parameters
-
-*   **Isolated Canvas**: The canvas is encapsulated within `components/StorytellingIsland.tsx`. It does not bleed into the rest of the layout or block traditional document flows.
-*   **Oman Logistics Grid**: Renders glowing Omani city nodes (Muscat, Sohar, Nizwa, Duqm, Salalah) connected by red lines (`THREE.Line`) to represent the secure cold-chain transit network.
-*   **CAD-Style Refrigerator Truck**: Programmatically rendered using basic box and cylinder geometries to eliminate external file load overhead:
-    *   **Cabin**: Finished in charcoal obsidian with an outer red CAD wireframe outline (`#E31B23`, `opacity: 0.15`) for a futuristic telemetry aesthetic.
-    *   **Volumetric Headlight Cones**: Transparent yellow cylinders (`#FBBF24`, `opacity: 0.16`) projecting forward to simulate headlights.
-    *   **Cargo Trailer**: Translucent container walls (`roughness: 0.15`, `transmission: 0.82`) displaying active cooler airflow particle simulations and green/red thermal node alerts.
-*   **Lighting Configuration**: High-intensity spot, directional, and point lights (combined with an ambient light intensity of `0.75`) to make the CAD wireframes and metallic materials stand out cleanly.
+This document summarizes the GSAP ScrollTrigger pinned parallax sections, narrative checkpoints, and scroll bindings implemented in `components/StorytellingTimeline.tsx`.
 
 ---
 
-## 2. Scroll-Driven Timeline Checkpoints
+## 1. Architecture Overview
 
-As the user scrolls through the `400vh` scroll height container, the scroll progress (`0.0` to `1.0`) is calculated and mapped to camera coordinates, truck positioning, and Omani logistics grid stages:
+*   **Engine**: GSAP ScrollTrigger with per-section pinning (`pin: true`, `pinSpacing: false`).
+*   **Six pinned sections**, each `100vh`, sequentially pinning as the user scrolls.
+*   **Parallax backgrounds**: Each section's background image scrubs from `y: 15%` → `y: -15%` with `scale: 1.1` → `1` as you scroll through it.
+*   **Content fade-in**: Text panels fade+slide up (`y: 40, opacity: 0` → `y: 0, opacity: 1`) linked to scroll via `scrub: 1`.
+*   **3D removed**: The programmatic Three.js truck model was removed. All sections use full-bleed premium imagery.
+*   **Lazy image loading**: Browser-native and React lazy loading with multiple WebP/AVIF breakpoints.
 
-| Scroll progress | Story Stage | Camera Positioning / Model Transform |
+---
+
+## 2. Scroll-Driven Timeline Panels
+
+| Panel | Story Stage | Background Image |
 | :--- | :--- | :--- |
-| **0.0 - 0.16** | National Logistics Grid Online | Camera descends from top-front. The logistics grid lights up. GPS node starts pulsing. |
-| **0.17 - 0.33** | Cold Chain Intelligence | Camera sweeps to an extreme side closeup of the truck trailer. Internal airflow and thermal pings animate. |
-| **0.34 - 0.50** | Real-Time Fleet Telemetry | Camera pulls back as wheels spin up. Headlights project volumetric light cones to simulate road dispatch. |
-| **0.51 - 0.66** | Omani Distribution Network | Camera shifts to a top-down view showing the Muscat, Sohar, Nizwa, Duqm, and Salalah pathways connecting. |
-| **0.67 - 0.83** | Intelligent Cargo Access | Camera zooms into the rear cargo container. The trailer doors slide open, revealing internal cooling vapor. |
-| **0.84 - 1.00** | Nationwide Excellence Dashboard | The Three.js canvas dissolves/fades away as a 2D enterprise performance ledger rises. |
+| **1** | National Logistics Grid Online | `/images/hero_oman_transit.png` |
+| **2** | Cold Chain Intelligence | `/images/cold-chain-trailer-interrior-1920w.webp` (new) |
+| **3** | Real-Time Fleet Telemetry | `/images/control_center_tech.png` |
+| **4** | Nationwide Distribution Network | `/images/oman-network-map-1920w.webp` (new) |
+| **5** | Verified Cold-Chain Delivery | `/images/cargo-door-opening-1920w.webp` (new) |
+| **6** | Operational Excellence Ledger | Pure 2D KPI dashboard (no background image) |
 
 ---
 
-## 3. Dynamic Optimization & SSR Protection
+## 3. GSAP ScrollTrigger Details
 
-To prevent hydration mismatches and server compile issues:
-1.  **Dynamic Import**: Loaded inside `app/page.tsx` using `next/dynamic` with `ssr: false`.
-2.  **Hydration Loader**: Includes a custom loading animation to display during WebGL context compilation:
-    ```typescript
-    const StorytellingIsland = dynamic(() => import("@/components/StorytellingIsland"), {
-      ssr: false,
-      loading: () => <SpinnerLoader />,
-    });
-    ```
-3.  **Dynamic Unloading**: The component uses an `IntersectionObserver` to track viewport intersection. If the storytelling section is not visible, the Canvas is completely unloaded from the DOM, freeing GPU memory.
+Each section gets:
+
+```typescript
+// Pin the section
+ScrollTrigger.create({
+  trigger: section,
+  start: "top top",
+  end: "bottom bottom",
+  pin: true,
+  pinSpacing: false,
+});
+
+// Parallax background
+gsap.fromTo(bg,
+  { y: "15%", scale: 1.1 },
+  { y: "-15%", scale: 1, ease: "none",
+    scrollTrigger: { trigger: section, start: "top bottom",
+    end: "bottom top", scrub: 1.5 }
+  }
+);
+
+// Content fade-in
+gsap.fromTo(content,
+  { y: 40, opacity: 0 },
+  { y: 0, opacity: 1, ease: "power2.out",
+    scrollTrigger: { trigger: section, start: "top 80%",
+    end: "top 30%", scrub: 1 }
+  }
+);
+```
+
+*   **Progress bar**: Fixed top bar (3px, crimson→amber gradient) scales from 0 to 1 across the full page scroll.
+
+---
+
+## 4. Image Assets (New)
+
+| Asset | Generated Sizes | Formats |
+| :--- | :--- | :--- |
+| `cold-chain-trailer-interrior` | 640w, 1280w, 1920w | WebP, AVIF, JPEG (fallback) |
+| `oman-network-map` | 640w, 1280w, 1920w | WebP, AVIF, JPEG (fallback) |
+| `cargo-door-opening` | 640w, 1280w, 1920w | WebP, AVIF, JPEG (fallback) |
+
+Generated via `sharp` in `scripts/convert-images.mjs`.
+
+---
+
+## 5. Mobile Fallback
+
+At `< 768px`, the GSAP pinned sections are replaced with a vertical accordion/infographic layout (same content, stack layout). No scroll-linked animations on mobile.
+
+---
+
+## 6. Dynamic Import
+
+```typescript
+const StorytellingTimeline = dynamic(() => import("@/components/StorytellingTimeline"), {
+  ssr: false,
+  loading: () => <SpinnerLoader />,
+});
+```
