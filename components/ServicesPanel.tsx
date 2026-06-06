@@ -5,6 +5,7 @@ import { useInView } from "react-intersection-observer";
 import { ArrowRight, Thermometer, Warehouse, Truck, RefreshCw, BarChart2, CheckSquare } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import SpotlightCard from "./SpotlightCard";
 
 export default function ServicesPanel() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -16,6 +17,8 @@ export default function ServicesPanel() {
       desc: "Comprehensive climate-controlled transit for temperature-sensitive beverages, ensuring brand freshness across extreme summer climates.",
       features: ["Refrigerated (-18°C to +4°C)", "Ambient & Chilled capacity", "Real-time temperature loggers"],
       accentColor: "border-l-crimson",
+      glowColor: "rgba(227, 27, 35, 0.12)",
+      borderColor: "rgba(227, 27, 35, 0.35)",
     },
     {
       title: "Automated Warehousing",
@@ -23,6 +26,8 @@ export default function ServicesPanel() {
       desc: "Massive storage facilities optimized for fast sorting, pallet systems, inventory technology, and cross-docking operations.",
       features: ["WMS tracking systems", "10,000+ pallet slots in Muscat", "24/7 automated security security"],
       accentColor: "border-l-amber",
+      glowColor: "rgba(229, 169, 60, 0.12)",
+      borderColor: "rgba(229, 169, 60, 0.35)",
     },
     {
       title: "Route-to-Market Distribution",
@@ -30,6 +35,8 @@ export default function ServicesPanel() {
       desc: "Direct deliveries to retail chains, wholesalers, and hypermarkets across every district in Oman, backed by scale-assured timetables.",
       features: ["Daily governorate routes", "Coca-Cola level compliance", "Dedicated delivery schedules"],
       accentColor: "border-l-white",
+      glowColor: "rgba(255, 255, 255, 0.08)",
+      borderColor: "rgba(255, 255, 255, 0.25)",
     },
   ];
 
@@ -75,35 +82,41 @@ export default function ServicesPanel() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className={`glass-panel p-8 rounded-lg flex flex-col justify-between border-l-4 ${svc.accentColor} hover:scale-[1.02] transition-transform duration-300`}
+                className="h-full"
               >
-                <div>
-                  <div className="flex h-12 w-12 items-center justify-center rounded bg-obsidian border border-border-glass text-amber mb-6">
-                    <Icon className="h-6 w-6" />
-                  </div>
-                  <h3 className="font-display text-xl font-bold text-white mb-4">
-                    {svc.title}
-                  </h3>
-                  <p className="font-sans text-sm text-silver/90 leading-relaxed mb-6">
-                    {svc.desc}
-                  </p>
-                  <ul className="space-y-3 mb-8">
-                    {svc.features.map((feat) => (
-                      <li key={feat} className="flex items-center gap-2 text-xs text-silver">
-                        <CheckSquare className="h-4 w-4 text-crimson shrink-0" />
-                        <span>{feat}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                <Link
-                  href="/services"
-                  className="inline-flex items-center gap-1 text-xs font-semibold text-amber hover:text-white transition-colors group mt-auto"
+                <SpotlightCard
+                  glowColor={svc.glowColor}
+                  borderColor={svc.borderColor}
+                  className={`p-8 rounded-lg flex flex-col justify-between border-l-4 ${svc.accentColor} hover:scale-[1.02] transition-all duration-300 h-full`}
                 >
-                  Technical Specifications
-                  <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
-                </Link>
+                  <div>
+                    <div className="flex h-12 w-12 items-center justify-center rounded bg-obsidian border border-border-glass text-amber mb-6">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="font-display text-xl font-bold text-white mb-4">
+                      {svc.title}
+                    </h3>
+                    <p className="font-sans text-sm text-silver/90 leading-relaxed mb-6">
+                      {svc.desc}
+                    </p>
+                    <ul className="space-y-3 mb-8">
+                      {svc.features.map((feat) => (
+                        <li key={feat} className="flex items-center gap-2 text-xs text-silver">
+                          <CheckSquare className="h-4 w-4 text-crimson shrink-0" />
+                          <span>{feat}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <Link
+                    href="/services"
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-amber hover:text-white transition-colors group mt-auto"
+                  >
+                    Technical Specifications
+                    <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </SpotlightCard>
               </motion.div>
             );
           })}

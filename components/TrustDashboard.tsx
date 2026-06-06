@@ -5,6 +5,8 @@ import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { CheckCircle2, Shield, Truck, Map, Database, Award } from "lucide-react";
 
+import SpotlightCard from "./SpotlightCard";
+
 // CountUp helper component
 function CountUp({ value, suffix = "" }: { value: number; suffix?: string }) {
   const [count, setCount] = useState(0);
@@ -82,18 +84,24 @@ export default function TrustDashboard() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="glass-panel p-8 rounded-lg flex flex-col items-center text-center border-l-2 border-l-amber/60 hover:border-l-crimson hover:scale-[1.02] transition-all duration-300"
+                className="h-full"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded bg-obsidian border border-border-glass text-crimson mb-4">
-                  <Icon className="h-6 w-6" />
-                </div>
-                <CountUp value={kpi.value} suffix={kpi.suffix} />
-                <h3 className="mt-3 font-display text-lg font-bold text-white">
-                  {kpi.label}
-                </h3>
-                <p className="mt-2 font-sans text-sm text-silver/80">
-                  {kpi.desc}
-                </p>
+                <SpotlightCard
+                  glowColor="rgba(229, 169, 60, 0.15)"
+                  borderColor="rgba(229, 169, 60, 0.4)"
+                  className="p-8 rounded-lg flex flex-col items-center text-center border-l-2 border-l-amber/60 hover:border-l-crimson hover:scale-[1.02] transition-all duration-300 h-full"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded bg-obsidian border border-border-glass text-crimson mb-4">
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  <CountUp value={kpi.value} suffix={kpi.suffix} />
+                  <h3 className="mt-3 font-display text-lg font-bold text-white">
+                    {kpi.label}
+                  </h3>
+                  <p className="mt-2 font-sans text-sm text-silver/80">
+                    {kpi.desc}
+                  </p>
+                </SpotlightCard>
               </motion.div>
             );
           })}

@@ -84,6 +84,29 @@ export default function TelemetryMap() {
           <p className="mt-4 font-sans text-base text-silver max-w-2xl">
             Select a terminal on the geographic interface to preview real-time fleet telemetry, climate storage logs, and regional capacity metrics.
           </p>
+          
+          {/* 21st.dev inspired sliding tabs switcher */}
+          <div className="mt-8 flex flex-wrap gap-1 p-1 bg-obsidian rounded-lg border border-border-glass max-w-md">
+            {hubs.map((hub) => (
+              <button
+                key={hub.id}
+                onClick={() => setActiveHub(hub)}
+                className="relative flex-1 px-4 py-2.5 text-xs font-semibold rounded transition-colors duration-200 z-10 focus:outline-none cursor-pointer"
+                style={{
+                  color: activeHub.id === hub.id ? "#0D1117" : "#8B949E",
+                }}
+              >
+                {activeHub.id === hub.id && (
+                  <motion.span
+                    layoutId="activeHubTab"
+                    className="absolute inset-0 bg-amber rounded -z-10"
+                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                  />
+                )}
+                {hub.name.split(" ")[0]}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">

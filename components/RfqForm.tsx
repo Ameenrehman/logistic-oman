@@ -84,12 +84,21 @@ export default function RfqForm() {
         </div>
 
         <div className="glass-panel rounded-lg p-8 md:p-12 relative overflow-hidden">
-          {/* Progress bar */}
-          <div className="w-full bg-border-glass h-1.5 rounded-full mb-10 relative overflow-hidden">
-            <div
-              className="bg-amber h-full transition-all duration-300"
-              style={{ width: isSubmitted ? "100%" : `${(step / 3) * 100}%` }}
-            />
+          {/* Progress bar & Step badges */}
+          <div className="mb-10">
+            <div className="flex justify-between items-center mb-4 text-xs font-sans font-semibold text-silver/60">
+              <span className={step >= 1 ? "text-amber transition-colors duration-300" : "transition-colors duration-300"}>1. Corporate Details</span>
+              <span className={step >= 2 ? "text-amber transition-colors duration-300" : "transition-colors duration-300"}>2. Operations Scope</span>
+              <span className={isSubmitted ? "text-amber transition-colors duration-300" : "transition-colors duration-300"}>3. Completed</span>
+            </div>
+            <div className="w-full bg-border-glass h-1.5 rounded-full relative overflow-hidden">
+              <motion.div
+                className="bg-amber h-full"
+                initial={{ width: "33%" }}
+                animate={{ width: isSubmitted ? "100%" : `${step === 1 ? 33 : 66}%` }}
+                transition={{ duration: 0.3 }}
+              />
+            </div>
           </div>
 
           <AnimatePresence mode="wait">
@@ -117,8 +126,10 @@ export default function RfqForm() {
                           name="companyName"
                           value={formData.companyName}
                           onChange={handleInputChange}
-                          className={`rounded bg-chamber border p-3 font-sans text-sm text-white focus:outline-none focus:border-amber transition-colors ${
-                            errors.companyName ? "border-crimson" : "border-border-glass"
+                          className={`rounded bg-chamber border p-3 font-sans text-sm text-white focus:outline-none focus:ring-1 transition-all duration-300 ${
+                            errors.companyName 
+                              ? "border-crimson focus:border-crimson focus:ring-crimson/30 focus:shadow-[0_0_15px_rgba(227,27,35,0.15)]" 
+                              : "border-border-glass focus:border-amber focus:ring-amber/30 focus:shadow-[0_0_15px_rgba(229,169,60,0.15)]"
                           }`}
                           placeholder="e.g. Coca-Cola Bottlers"
                         />
@@ -140,8 +151,10 @@ export default function RfqForm() {
                           name="contactName"
                           value={formData.contactName}
                           onChange={handleInputChange}
-                          className={`rounded bg-chamber border p-3 font-sans text-sm text-white focus:outline-none focus:border-amber transition-colors ${
-                            errors.contactName ? "border-crimson" : "border-border-glass"
+                          className={`rounded bg-chamber border p-3 font-sans text-sm text-white focus:outline-none focus:ring-1 transition-all duration-300 ${
+                            errors.contactName 
+                              ? "border-crimson focus:border-crimson focus:ring-crimson/30 focus:shadow-[0_0_15px_rgba(227,27,35,0.15)]" 
+                              : "border-border-glass focus:border-amber focus:ring-amber/30 focus:shadow-[0_0_15px_rgba(229,169,60,0.15)]"
                           }`}
                           placeholder="e.g. Salim Al Harthy"
                         />
@@ -163,8 +176,10 @@ export default function RfqForm() {
                           name="email"
                           value={formData.email}
                           onChange={handleInputChange}
-                          className={`rounded bg-chamber border p-3 font-sans text-sm text-white focus:outline-none focus:border-amber transition-colors ${
-                            errors.email ? "border-crimson" : "border-border-glass"
+                          className={`rounded bg-chamber border p-3 font-sans text-sm text-white focus:outline-none focus:ring-1 transition-all duration-300 ${
+                            errors.email 
+                              ? "border-crimson focus:border-crimson focus:ring-crimson/30 focus:shadow-[0_0_15px_rgba(227,27,35,0.15)]" 
+                              : "border-border-glass focus:border-amber focus:ring-amber/30 focus:shadow-[0_0_15px_rgba(229,169,60,0.15)]"
                           }`}
                           placeholder="salim@brand.com"
                         />
@@ -186,8 +201,10 @@ export default function RfqForm() {
                           name="phone"
                           value={formData.phone}
                           onChange={handleInputChange}
-                          className={`rounded bg-chamber border p-3 font-sans text-sm text-white focus:outline-none focus:border-amber transition-colors ${
-                            errors.phone ? "border-crimson" : "border-border-glass"
+                          className={`rounded bg-chamber border p-3 font-sans text-sm text-white focus:outline-none focus:ring-1 transition-all duration-300 ${
+                            errors.phone 
+                              ? "border-crimson focus:border-crimson focus:ring-crimson/30 focus:shadow-[0_0_15px_rgba(227,27,35,0.15)]" 
+                              : "border-border-glass focus:border-amber focus:ring-amber/30 focus:shadow-[0_0_15px_rgba(229,169,60,0.15)]"
                           }`}
                           placeholder="+968 9999 9999"
                         />
@@ -234,7 +251,7 @@ export default function RfqForm() {
                           name="volume"
                           value={formData.volume}
                           onChange={handleInputChange}
-                          className="rounded bg-chamber border border-border-glass p-3 font-sans text-sm text-white focus:outline-none focus:border-amber transition-colors"
+                          className="rounded bg-chamber border border-border-glass p-3 font-sans text-sm text-white focus:outline-none focus:ring-1 focus:border-amber focus:ring-amber/30 focus:shadow-[0_0_15px_rgba(229,169,60,0.15)] transition-all duration-300"
                         >
                           <option value="low">Under 100,000 cases</option>
                           <option value="medium">100,000 - 500,000 cases</option>
@@ -251,7 +268,7 @@ export default function RfqForm() {
                           name="tempRequirement"
                           value={formData.tempRequirement}
                           onChange={handleInputChange}
-                          className="rounded bg-chamber border border-border-glass p-3 font-sans text-sm text-white focus:outline-none focus:border-amber transition-colors"
+                          className="rounded bg-chamber border border-border-glass p-3 font-sans text-sm text-white focus:outline-none focus:ring-1 focus:border-amber focus:ring-amber/30 focus:shadow-[0_0_15px_rgba(229,169,60,0.15)] transition-all duration-300"
                         >
                           <option value="ambient">Ambient (Dry Cargo)</option>
                           <option value="chilled">Chilled (+2°C to +8°C)</option>
@@ -269,7 +286,7 @@ export default function RfqForm() {
                           name="coverageNeeded"
                           value={formData.coverageNeeded}
                           onChange={handleInputChange}
-                          className="rounded bg-chamber border border-border-glass p-3 font-sans text-sm text-white focus:outline-none focus:border-amber transition-colors"
+                          className="rounded bg-chamber border border-border-glass p-3 font-sans text-sm text-white focus:outline-none focus:ring-1 focus:border-amber focus:ring-amber/30 focus:shadow-[0_0_15px_rgba(229,169,60,0.15)] transition-all duration-300"
                         >
                           <option value="regional">Regional (Muscat Governorate Only)</option>
                           <option value="national">Nationwide (All Oman Governorates)</option>
@@ -287,7 +304,7 @@ export default function RfqForm() {
                           rows={4}
                           value={formData.customNotes}
                           onChange={handleInputChange}
-                          className="rounded bg-chamber border border-border-glass p-3 font-sans text-sm text-white focus:outline-none focus:border-amber transition-colors resize-none"
+                          className="rounded bg-chamber border border-border-glass p-3 font-sans text-sm text-white focus:outline-none focus:ring-1 focus:border-amber focus:ring-amber/30 focus:shadow-[0_0_15px_rgba(229,169,60,0.15)] transition-all duration-300 resize-none"
                           placeholder="Outline specific schedules, custom warehouse SLA expectations, or integration needs..."
                         />
                       </div>

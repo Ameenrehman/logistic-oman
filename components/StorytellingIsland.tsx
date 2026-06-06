@@ -490,16 +490,19 @@ export default function StorytellingIsland() {
       const stage = Math.min(5, Math.floor(currentProgress * 6));
       setActiveStage(stage);
 
-      // Unload Three.js canvas once past the timeline to preserve rendering memory
-      if (currentProgress >= 0.98) {
-        setIsUnloaded(true);
-      } else {
-        setIsUnloaded(false);
-      }
+      // Unload Three.js canvas once out of viewport to preserve rendering memory & avoid context lost
+      const inViewport = rect.top < viewportHeight && rect.bottom > 0;
+      setIsUnloaded(!inViewport);
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll);
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
   }, [isMobile]);
 
   // Premium Mobile Fallback: Interactive Infographic
@@ -773,7 +776,7 @@ export default function StorytellingIsland() {
               )}
             </AnimatePresence>
 
-            {progress < 0.95 && (
+            {progress < 0.83 && (
               <div className="mt-12 flex items-center gap-2 text-xs font-sans text-silver/60">
                 <ChevronDown className="h-4 w-4 text-amber animate-bounce" />
                 Scroll down to traverse the cold-chain timeline
