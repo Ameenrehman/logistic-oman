@@ -1,49 +1,48 @@
-# Image Generation Guide - Beverage Logistics Oman
+# Free Image & Asset Generation Guide - Beverage Logistics Oman
 
-For Stage 1 (Asset Production), you need to generate 15–20 high-quality commercial-grade images for the website (Hero, Warehouse, Fleet, and Operations Center). Below are the recommended platforms, tools, and parameters to achieve the highest quality.
-
----
-
-## 🌐 Recommended Image Generators
-
-### 1. Midjourney (v6)
-* **Website**: [midjourney.com](https://www.midjourney.com/) (Requires Discord or their web interface subscription)
-* **Why**: Best in class for cinematic, warm lighting (golden hour), premium reflections on truck bodywork, and atmospheric landscape compositions.
-* **Key Commands**:
-  - Add `--ar 16:9` for Hero images.
-  - Add `--ar 4:3` for Warehouse images.
-  - Add `--ar 1:1` for Fleet/Card images.
-  - Add `--style raw` to avoid cartoonish/fantasy looks and maintain a realistic commercial photograph style.
-
-### 2. FLUX.1 (Dev / Pro)
-* **Websites / APIs**: 
-  - [fal.ai](https://fal.ai/) (Pay-as-you-go, fast, very cheap)
-  - [replicate.com](https://replicate.com/) (Great selection of FLUX.1 models)
-  - [huggingface.co](https://huggingface.co/) (Free/paid spaces for testing)
-* **Why**: The absolute state-of-the-art for physical composition, realistic vehicle anatomy (truck wheels, cabs), and text rendering. It handles complex scene instructions better than any other model.
-
-### 3. Leonardo.ai
-* **Website**: [leonardo.ai](https://leonardo.ai/) (Offers daily free credits and web UI)
-* **Why**: Has specific styles like *Kino XL*, *Leonardo Vision XL*, or *Phoenix* which are pre-tuned for high-end cinematic/commercial photography.
-* **Bonus**: Has built-in canvas editing and real-time generation tools.
+This guide has been updated to focus strictly on **free, high-quality AI image and asset generation tools** suitable for your project without requiring paid subscriptions.
 
 ---
 
-## ⚡ Resolution Enhancers & Upscalers
+## 📸 2D Image Generation (Stage 1 Assets)
 
-Since the plan asks for **8K resolution** for final assets, you should generate images at standard resolutions (e.g., 1024x1024 or 1456x816) and upscale them.
+For generating the Hero, Warehouse, Fleet, and Operations Center images, you can use these free platforms:
 
-1. **Magnific AI** ([magnific.ai](https://magnific.ai/)): The gold standard for upscaling. It adds incredibly realistic details (road texture, paint reflections, dust, lights) rather than just stretching pixels.
-2. **Krea AI** ([krea.ai](https://krea.ai/)): Very strong upscaler and enhancer with fine-grained control over "creativity" and "resemblance".
-3. **Upscayl** (Open Source / Free): A desktop application using local GPU to upscale images without subscription costs.
+### 1. Nano Banana 2 (via Vertex / Google AI Studio)
+* **Access**: Available via Google AI Studio, Vertex AI platform, or integrated free web interfaces like `nanobanana.art` / `nano-banana2.co`.
+* **Why**: Built on Gemini Flash architecture, it is extremely fast (10-30 seconds), offers native high-resolution output (up to 2K/4K with built-in upscaling), renders accurate typography, and has excellent composition control.
+* **Best For**: Real-world context, logistics vehicles, warehouse shots, and consistent branding.
+
+### 2. Google AI Studio (Imagen 3)
+* **Access**: [aistudio.google.com](https://aistudio.google.com/) (Completely free developer tier with high daily limits)
+* **Why**: Imagen 3 is one of the highest-rated photorealistic engines. It has advanced text rendering, no watermarks, and handles golden hour/lighting detail beautifully.
+
+### 3. Leonardo.ai (Free Tier)
+* **Access**: [leonardo.ai](https://leonardo.ai/) (Provides 150 free credits daily, which refills every 24 hours)
+* **Why**: You can generate dozens of images daily for free. Use the *Kino XL* or *Vision XL* styles for premium commercial corporate look and feel.
+
+### 4. FLUX.1 (Schnell / Dev via Hugging Face)
+* **Access**: Hugging Face Spaces (e.g., search for "Flux Schnell" on Hugging Face for free generation spaces)
+* **Why**: Flux is a state-of-the-art open-source image generation model. The *Schnell* model is extremely fast and handles complex prompts (like "Safe zone: Left 30% empty") perfectly.
 
 ---
 
-## 💡 Prompting Best Practices for Logistics
+## 🧊 3D Models & WebGL Textures (Stage 5 Three.js Storytelling)
 
-- **Maintain Color Consistency**: To keep a cohesive brand look across all pages, include color keywords like:
-  - `golden hour lighting`, `warm desert tones`, `corporate branding`, `consistent color grading`.
-- **Composition / Safe Zones**: When generating hero images, remember there will be text on the left side on desktop. Use Midjourney's panning or prompt:
-  - `Left 30% empty for text overlay, minimalist composition, off-center subject`.
-- **Remove Text & Watermarks**: AI sometimes adds fake letters. Always append negative prompts or instructions like:
-  - `No logos, no text, no watermark, photorealistic, commercial photography`.
+For the Three.js Storytelling Island (Stage 5), you will need 3D models (like beverage bottles, warehouses, shipping trucks, retail shelves, etc.).
+
+### 1. Meshy.ai (Free Tier)
+* **Access**: [meshy.ai](https://www.meshy.ai/)
+* **Why**: Outstanding AI-powered text-to-3D and image-to-3D generator. 
+* **How to use**: 
+  - Generate a 2D image using Nano Banana 2 or Google AI Studio.
+  - Upload it to Meshy.ai to convert it into a high-quality 3D mesh model (`.gltf` or `.obj`).
+  - Generate PBR (Physically Based Rendering) textures for your 3D models using text prompts.
+
+---
+
+## ⚡ Free Upscaling & Enhancing
+Since the plan requests **8K resolution** for final assets, you can upscale your free generations using:
+* **Krea AI** ([krea.ai](https://krea.ai/)): Offers a generous free tier for detail enhancement.
+* **Upscayl** ([upscayl.org](https://www.upscayl.org/)): A 100% free, open-source desktop application that uses your local computer to upscale images up to 8x.
+
