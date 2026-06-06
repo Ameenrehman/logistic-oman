@@ -89,7 +89,7 @@ export default function TrustDashboard() {
                 <SpotlightCard
                   glowColor="rgba(229, 169, 60, 0.15)"
                   borderColor="rgba(229, 169, 60, 0.4)"
-                  className="p-8 rounded-lg flex flex-col items-center text-center border-l-2 border-l-amber/60 hover:border-l-crimson hover:scale-[1.02] transition-all duration-300 h-full"
+                  className="p-8 rounded-lg flex flex-col items-center text-center border-l-2 border-l-amber/60 hover:border-l-crimson md:hover:scale-[1.02] transition-all duration-300 h-full"
                 >
                   <div className="flex h-12 w-12 items-center justify-center rounded bg-obsidian border border-border-glass text-crimson mb-4">
                     <Icon className="h-6 w-6" />

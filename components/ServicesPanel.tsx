@@ -58,13 +58,13 @@ export default function ServicesPanel() {
           <div className="lg:col-span-6 flex flex-col sm:flex-row gap-4 sm:justify-end">
             <Link
               href="/services"
-              className="inline-flex items-center justify-center gap-2 rounded bg-chamber border border-border-glass px-6 py-3 font-sans text-sm font-semibold text-white hover:border-amber transition-colors"
+              className="inline-flex items-center justify-center gap-2 rounded bg-chamber border border-border-glass px-6 py-3.5 font-sans text-sm font-semibold text-white hover:border-amber transition-colors"
             >
               Explore Services
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 rounded bg-crimson px-6 py-3 font-sans text-sm font-semibold text-white hover:bg-amber hover:text-obsidian transition-colors"
+              className="inline-flex items-center justify-center gap-2 rounded bg-crimson px-6 py-3.5 font-sans text-sm font-semibold text-white hover:bg-amber hover:text-obsidian transition-colors"
             >
               Request Custom SLA
               <ArrowRight className="h-4 w-4" />
@@ -87,7 +87,7 @@ export default function ServicesPanel() {
                 <SpotlightCard
                   glowColor={svc.glowColor}
                   borderColor={svc.borderColor}
-                  className={`p-8 rounded-lg flex flex-col justify-between border-l-4 ${svc.accentColor} hover:scale-[1.02] transition-all duration-300 h-full`}
+                  className={`p-8 rounded-lg flex flex-col justify-between border-l-4 ${svc.accentColor} md:hover:scale-[1.02] transition-all duration-300 h-full`}
                 >
                   <div>
                     <div className="flex h-12 w-12 items-center justify-center rounded bg-obsidian border border-border-glass text-amber mb-6">
@@ -111,7 +111,7 @@ export default function ServicesPanel() {
                   
                   <Link
                     href="/services"
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-amber hover:text-white transition-colors group mt-auto"
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-amber hover:text-white transition-colors group mt-auto py-2"
                   >
                     Technical Specifications
                     <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />

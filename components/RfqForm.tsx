@@ -126,7 +126,7 @@ export default function RfqForm() {
                           name="companyName"
                           value={formData.companyName}
                           onChange={handleInputChange}
-                          className={`rounded bg-chamber border p-3 font-sans text-sm text-white focus:outline-none focus:ring-1 transition-all duration-300 ${
+                          className={`rounded bg-chamber border p-3.5 font-sans text-sm text-white focus:outline-none focus:ring-1 transition-all duration-300 ${
                             errors.companyName 
                               ? "border-crimson focus:border-crimson focus:ring-crimson/30 focus:shadow-[0_0_15px_rgba(227,27,35,0.15)]" 
                               : "border-border-glass focus:border-amber focus:ring-amber/30 focus:shadow-[0_0_15px_rgba(229,169,60,0.15)]"
@@ -151,7 +151,7 @@ export default function RfqForm() {
                           name="contactName"
                           value={formData.contactName}
                           onChange={handleInputChange}
-                          className={`rounded bg-chamber border p-3 font-sans text-sm text-white focus:outline-none focus:ring-1 transition-all duration-300 ${
+                          className={`rounded bg-chamber border p-3.5 font-sans text-sm text-white focus:outline-none focus:ring-1 transition-all duration-300 ${
                             errors.contactName 
                               ? "border-crimson focus:border-crimson focus:ring-crimson/30 focus:shadow-[0_0_15px_rgba(227,27,35,0.15)]" 
                               : "border-border-glass focus:border-amber focus:ring-amber/30 focus:shadow-[0_0_15px_rgba(229,169,60,0.15)]"
@@ -176,7 +176,7 @@ export default function RfqForm() {
                           name="email"
                           value={formData.email}
                           onChange={handleInputChange}
-                          className={`rounded bg-chamber border p-3 font-sans text-sm text-white focus:outline-none focus:ring-1 transition-all duration-300 ${
+                          className={`rounded bg-chamber border p-3.5 font-sans text-sm text-white focus:outline-none focus:ring-1 transition-all duration-300 ${
                             errors.email 
                               ? "border-crimson focus:border-crimson focus:ring-crimson/30 focus:shadow-[0_0_15px_rgba(227,27,35,0.15)]" 
                               : "border-border-glass focus:border-amber focus:ring-amber/30 focus:shadow-[0_0_15px_rgba(229,169,60,0.15)]"
@@ -201,7 +201,7 @@ export default function RfqForm() {
                           name="phone"
                           value={formData.phone}
                           onChange={handleInputChange}
-                          className={`rounded bg-chamber border p-3 font-sans text-sm text-white focus:outline-none focus:ring-1 transition-all duration-300 ${
+                          className={`rounded bg-chamber border p-3.5 font-sans text-sm text-white focus:outline-none focus:ring-1 transition-all duration-300 ${
                             errors.phone 
                               ? "border-crimson focus:border-crimson focus:ring-crimson/30 focus:shadow-[0_0_15px_rgba(227,27,35,0.15)]" 
                               : "border-border-glass focus:border-amber focus:ring-amber/30 focus:shadow-[0_0_15px_rgba(229,169,60,0.15)]"
@@ -221,7 +221,7 @@ export default function RfqForm() {
                       <button
                         type="button"
                         onClick={handleNext}
-                        className="inline-flex items-center gap-2 rounded bg-crimson px-6 py-3 font-sans text-sm font-semibold text-white hover:bg-amber hover:text-obsidian transition-colors"
+                        className="inline-flex items-center gap-2 rounded bg-crimson px-6 py-3.5 font-sans text-sm font-semibold text-white hover:bg-amber hover:text-obsidian transition-colors"
                       >
                         Next: Logistics Scope
                         <ArrowRight className="h-4 w-4" />
@@ -251,7 +251,7 @@ export default function RfqForm() {
                           name="volume"
                           value={formData.volume}
                           onChange={handleInputChange}
-                          className="rounded bg-chamber border border-border-glass p-3 font-sans text-sm text-white focus:outline-none focus:ring-1 focus:border-amber focus:ring-amber/30 focus:shadow-[0_0_15px_rgba(229,169,60,0.15)] transition-all duration-300"
+                          className="rounded bg-chamber border border-border-glass p-3.5 font-sans text-sm text-white focus:outline-none focus:ring-1 focus:border-amber focus:ring-amber/30 focus:shadow-[0_0_15px_rgba(229,169,60,0.15)] transition-all duration-300"
                         >
                           <option value="low">Under 100,000 cases</option>
                           <option value="medium">100,000 - 500,000 cases</option>
@@ -268,7 +268,7 @@ export default function RfqForm() {
                           name="tempRequirement"
                           value={formData.tempRequirement}
                           onChange={handleInputChange}
-                          className="rounded bg-chamber border border-border-glass p-3 font-sans text-sm text-white focus:outline-none focus:ring-1 focus:border-amber focus:ring-amber/30 focus:shadow-[0_0_15px_rgba(229,169,60,0.15)] transition-all duration-300"
+                          className="rounded bg-chamber border border-border-glass p-3.5 font-sans text-sm text-white focus:outline-none focus:ring-1 focus:border-amber focus:ring-amber/30 focus:shadow-[0_0_15px_rgba(229,169,60,0.15)] transition-all duration-300"
                         >
                           <option value="ambient">Ambient (Dry Cargo)</option>
                           <option value="chilled">Chilled (+2°C to +8°C)</option>
@@ -286,7 +286,7 @@ export default function RfqForm() {
                           name="coverageNeeded"
                           value={formData.coverageNeeded}
                           onChange={handleInputChange}
-                          className="rounded bg-chamber border border-border-glass p-3 font-sans text-sm text-white focus:outline-none focus:ring-1 focus:border-amber focus:ring-amber/30 focus:shadow-[0_0_15px_rgba(229,169,60,0.15)] transition-all duration-300"
+                          className="rounded bg-chamber border border-border-glass p-3.5 font-sans text-sm text-white focus:outline-none focus:ring-1 focus:border-amber focus:ring-amber/30 focus:shadow-[0_0_15px_rgba(229,169,60,0.15)] transition-all duration-300"
                         >
                           <option value="regional">Regional (Muscat Governorate Only)</option>
                           <option value="national">Nationwide (All Oman Governorates)</option>
@@ -304,7 +304,7 @@ export default function RfqForm() {
                           rows={4}
                           value={formData.customNotes}
                           onChange={handleInputChange}
-                          className="rounded bg-chamber border border-border-glass p-3 font-sans text-sm text-white focus:outline-none focus:ring-1 focus:border-amber focus:ring-amber/30 focus:shadow-[0_0_15px_rgba(229,169,60,0.15)] transition-all duration-300 resize-none"
+                          className="rounded bg-chamber border border-border-glass p-3.5 font-sans text-sm text-white focus:outline-none focus:ring-1 focus:border-amber focus:ring-amber/30 focus:shadow-[0_0_15px_rgba(229,169,60,0.15)] transition-all duration-300 resize-none"
                           placeholder="Outline specific schedules, custom warehouse SLA expectations, or integration needs..."
                         />
                       </div>
@@ -314,14 +314,14 @@ export default function RfqForm() {
                       <button
                         type="button"
                         onClick={handlePrev}
-                        className="inline-flex items-center gap-2 rounded bg-chamber border border-border-glass px-6 py-3 font-sans text-sm font-semibold text-white hover:border-amber transition-colors"
+                        className="inline-flex items-center gap-2 rounded bg-chamber border border-border-glass px-6 py-3.5 font-sans text-sm font-semibold text-white hover:border-amber transition-colors"
                       >
                         <ArrowLeft className="h-4 w-4" />
                         Back
                       </button>
                       <button
                         type="submit"
-                        className="inline-flex items-center gap-2 rounded bg-crimson px-6 py-3 font-sans text-sm font-semibold text-white hover:bg-amber hover:text-obsidian transition-colors"
+                        className="inline-flex items-center gap-2 rounded bg-crimson px-6 py-3.5 font-sans text-sm font-semibold text-white hover:bg-amber hover:text-obsidian transition-colors"
                       >
                         Submit Request
                         <Send className="h-4 w-4" />
@@ -362,7 +362,7 @@ export default function RfqForm() {
                       customNotes: "",
                     });
                   }}
-                  className="rounded border border-border-glass bg-chamber px-6 py-2.5 font-sans text-xs font-semibold text-white hover:border-amber transition-colors"
+                  className="rounded border border-border-glass bg-chamber px-6 py-3.5 font-sans text-xs sm:text-sm font-semibold text-white hover:border-amber transition-colors"
                 >
                   Submit Another Quote
                 </button>

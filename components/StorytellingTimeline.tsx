@@ -182,16 +182,16 @@ export default function StorytellingTimeline() {
               return (
                 <div key={p.title} className="glass-panel rounded-lg p-5 bg-chamber/90 border border-border-glass/40 shadow-xl">
                   <div className="flex justify-between items-start mb-3">
-                    <span className="font-sans text-[10px] text-amber font-semibold uppercase tracking-wider">{p.subtitle}</span>
+                    <span className="font-sans text-xs text-amber font-semibold uppercase tracking-wider">{p.subtitle}</span>
                     <span className="font-mono text-xs text-silver/40">0{idx + 1} / 06</span>
                   </div>
                   <h3 className="font-display text-base font-bold text-white mb-2">{p.title}</h3>
-                  <p className="font-sans text-xs text-silver leading-relaxed mb-4">{p.desc}</p>
+                  <p className="font-sans text-sm text-silver leading-relaxed mb-4">{p.desc}</p>
                   <div className="pt-3 border-t border-border-glass/30 flex items-center gap-2">
                     <div className="flex h-7 w-7 items-center justify-center rounded bg-obsidian border border-border-glass/40 text-amber">
                       <I className="h-3.5 w-3.5" />
                     </div>
-                    <span className="font-mono text-[10px] font-bold text-white">{p.stat}</span>
+                    <span className="font-mono text-xs font-bold text-white">{p.stat}</span>
                   </div>
                 </div>
               );

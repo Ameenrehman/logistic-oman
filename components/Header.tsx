@@ -29,9 +29,9 @@ export default function Header() {
             <Image
               src="/images/backlogologistics.png"
               alt="Al Yanabeea Al Adabah Logistics"
-              width={280}
-              height={56}
-              className="h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+              width={200}
+              height={40}
+              className="h-8 sm:h-10 md:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
               priority
             />
           </Link>
@@ -68,7 +68,7 @@ export default function Header() {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden flex items-center justify-center p-2 rounded border border-border-glass text-white hover:text-amber hover:border-amber/30 transition-colors"
+            className="md:hidden flex items-center justify-center min-w-[48px] min-h-[48px] rounded border border-border-glass text-white hover:text-amber hover:border-amber/30 transition-colors"
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>

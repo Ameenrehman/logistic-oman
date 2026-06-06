@@ -145,13 +145,13 @@ export default function TelemetryMap() {
                 )}
               </svg>
 
-              {/* Hub Indicators */}
+                  {/* Hub Indicators */}
               {hubs.map((hub) => (
                 <button
                   key={hub.id}
                   onClick={() => setActiveHub(hub)}
                   style={{ left: `${hub.x}%`, top: `${hub.y}%` }}
-                  className="absolute -translate-x-1/2 -translate-y-1/2 group focus:outline-none z-10"
+                  className="absolute -translate-x-1/2 -translate-y-1/2 group focus:outline-none z-10 p-3"
                 >
                   {/* Outer pulse */}
                   <span className={`absolute inline-flex h-8 w-8 rounded-full opacity-30 animate-ping -left-2 -top-2 ${
@@ -159,12 +159,12 @@ export default function TelemetryMap() {
                   }`} />
                   
                   {/* Hub Dot */}
-                  <span className={`relative flex h-4 w-4 items-center justify-center rounded-full border border-white shadow ${
+                  <span className={`relative flex h-5 w-5 items-center justify-center rounded-full border-2 border-white shadow ${
                     activeHub.id === hub.id ? "bg-amber" : "bg-crimson"
                   } group-hover:scale-125 transition-transform`} />
                   
                   {/* Hub tooltip */}
-                  <span className="absolute left-6 -top-1 font-display text-xs font-bold text-white whitespace-nowrap bg-obsidian px-2 py-0.5 rounded border border-border-glass shadow opacity-80 group-hover:opacity-100 transition-opacity">
+                  <span className="absolute left-8 -top-1 font-display text-xs font-bold text-white whitespace-nowrap bg-obsidian px-2 py-0.5 rounded border border-border-glass shadow opacity-80 group-hover:opacity-100 transition-opacity pointer-events-none">
                     {hub.name.split(" ")[0]}
                   </span>
                 </button>

@@ -101,7 +101,7 @@ export default function AboutPage() {
                 We maintain active certifications to satisfy global procurement demands. All documentation is audited annually by independent international testing bodies.
               </p>
               <div className="mt-6">
-                <button className="inline-flex items-center gap-2 rounded bg-crimson px-5 py-2.5 font-sans text-xs font-semibold text-white hover:bg-amber hover:text-obsidian transition-colors">
+                <button className="inline-flex items-center gap-2 rounded bg-crimson px-6 py-3.5 font-sans text-xs sm:text-sm font-semibold text-white hover:bg-amber hover:text-obsidian transition-colors">
                   <FileText className="h-4 w-4" />
                   Download Credentials PDF
                 </button>

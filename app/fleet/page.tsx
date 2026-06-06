@@ -110,7 +110,7 @@ export default function FleetPage() {
                     <ShieldCheck className="h-4.5 w-4.5 text-crimson shrink-0" />
                     Strict Daily Technical & Sanitization Audit Complete
                   </div>
-                  <button className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber hover:text-white transition-colors">
+                  <button className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber hover:text-white transition-colors py-3 px-4 -m-4">
                     <FileDown className="h-4 w-4" /> Download SLA Sheet
                   </button>
                 </div>
