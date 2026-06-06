@@ -9,13 +9,13 @@ import ServicesPanel from "@/components/ServicesPanel";
 import TelemetryMap from "@/components/TelemetryMap";
 import RfqForm from "@/components/RfqForm";
 
-const StorytellingIsland = dynamic(() => import("@/components/StorytellingIsland"), {
+const StorytellingTimeline = dynamic(() => import("@/components/StorytellingTimeline"), {
   ssr: false,
   loading: () => (
     <div className="h-screen w-full bg-obsidian flex items-center justify-center border-b border-border-glass">
       <div className="text-center space-y-4">
         <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-crimson mx-auto"></div>
-        <p className="font-sans text-xs text-silver">Loading Storytelling Island Engine...</p>
+        <p className="font-sans text-xs text-silver">Loading Storytelling Timeline...</p>
       </div>
     </div>
   ),
@@ -90,8 +90,8 @@ export default function Home() {
       {/* 2. TRUST & METRICS DASHBOARD */}
       <TrustDashboard />
 
-      {/* 3. THREE.JS STORYTELLING ISLAND */}
-      <StorytellingIsland />
+      {/* 3. GSAP STORYTELLING TIMELINE */}
+      <StorytellingTimeline />
 
       {/* 4. SERVICES PANEL */}
       <ServicesPanel />

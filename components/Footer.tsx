@@ -35,9 +35,9 @@ export default function Footer() {
               <Image
                 src="/images/backlogologistics.png"
                 alt="Al Yanabeea Al Adabah Logistics"
-                width={180}
-                height={36}
-                className="h-9 w-auto object-contain"
+                width={220}
+                height={44}
+                className="h-11 w-auto object-contain"
               />
             </Link>
             <p className="font-sans text-sm leading-relaxed text-silver/80">

@@ -29,9 +29,9 @@ export default function Header() {
             <Image
               src="/images/backlogologistics.png"
               alt="Al Yanabeea Al Adabah Logistics"
-              width={220}
-              height={44}
-              className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+              width={280}
+              height={56}
+              className="h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
               priority
             />
           </Link>
