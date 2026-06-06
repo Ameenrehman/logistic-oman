@@ -50,60 +50,29 @@ function StylizedBottle({ progress }: { progress: number }) {
     // Linear interpolation helper
     const lerp = (start: number, end: number, amt: number) => (1 - amt) * start + amt * end;
 
-    let targetX = 0;
-    let targetY = -0.3;
-    let targetZ = 0;
-    let targetRotX = 0.1;
-    let targetRotY = state.clock.getElapsedTime() * 0.35; // slow constant rotation
-    let targetRotZ = 0;
-    let targetScale = 1.05;
+    // Continuous smooth movement spline equations based on progress
+    const angle = progress * Math.PI * 2; // full circle trip
+    
+    // Smooth X position: starts leftish, glides to center, shifts right, returns center
+    const targetX = Math.cos(angle * 1.25) * 0.35 - 0.1;
+    
+    // Smooth Y position: starts middle, moves down/up slightly + floating motion
+    const targetY = -0.12 + Math.sin(angle * 1.5) * 0.12 + Math.sin(state.clock.getElapsedTime() * 1.2) * 0.03;
+    
+    // Smooth Z position: starts close, recesses back in warehouse/transit, pulls close at consumer destination
+    const targetZ = progress < 0.2 
+      ? lerp(0.8, 0, progress / 0.2)
+      : progress > 0.8
+        ? lerp(0, 0.9, (progress - 0.8) / 0.2)
+        : Math.sin(progress * Math.PI) * -0.3;
 
-    if (progress < 0.2) {
-      // Production Facility: Center, standing tall, close-up
-      const t = progress / 0.2;
-      targetX = lerp(0, -1.0, t);
-      targetY = lerp(-0.3, -0.4, t);
-      targetZ = lerp(1, 0, t);
-      targetRotX = lerp(0.1, 0.2, t);
-      targetRotY = lerp(0, Math.PI * 0.5, t);
-      targetScale = lerp(1.2, 1.0, t);
-    } else if (progress < 0.4) {
-      // Warehouse: Left side, tilted, surrounded by racks
-      const t = (progress - 0.2) / 0.2;
-      targetX = lerp(-1.0, 1.0, t);
-      targetY = lerp(-0.4, -0.1, t);
-      targetZ = lerp(0, -0.4, t);
-      targetRotX = lerp(0.2, -0.25, t);
-      targetRotY = lerp(Math.PI * 0.5, Math.PI * 1.2, t);
-      targetScale = lerp(1.0, 0.95, t);
-    } else if (progress < 0.6) {
-      // Fleet Loading: Right side, moving into container
-      const t = (progress - 0.4) / 0.2;
-      targetX = lerp(1.0, 0, t);
-      targetY = lerp(-0.1, -0.5, t);
-      targetZ = lerp(-0.4, 0, t);
-      targetRotX = lerp(-0.25, 0.4, t);
-      targetRotY = lerp(Math.PI * 1.2, Math.PI * 2.0, t);
-      targetScale = lerp(0.95, 0.9, t);
-    } else if (progress < 0.8) {
-      // Highway Transit: Center, tilted back, moving fast
-      const t = (progress - 0.6) / 0.2;
-      targetX = lerp(0, -0.8, t);
-      targetY = lerp(-0.5, -0.2, t);
-      targetZ = lerp(0, 0.4, t);
-      targetRotX = lerp(0.4, 0.15, t);
-      targetRotY = lerp(Math.PI * 2.0, Math.PI * 2.8, t);
-      targetScale = lerp(0.9, 1.1, t);
-    } else {
-      // Retail & Consumer Table: Standing straight, floating, glowing, cap pops off effect
-      const t = (progress - 0.8) / 0.2;
-      targetX = lerp(-0.8, 0, t);
-      targetY = lerp(-0.2, -0.1, t);
-      targetZ = lerp(0.4, 1.1, t);
-      targetRotX = lerp(0.15, 0, t);
-      targetRotY = lerp(Math.PI * 2.8, Math.PI * 4.0, t);
-      targetScale = lerp(1.1, 1.25, t);
-    }
+    // Smooth Rotations
+    const targetRotX = 0.15 + Math.sin(angle) * 0.15;
+    const targetRotY = state.clock.getElapsedTime() * 0.2 + progress * Math.PI * 2.5;
+    const targetRotZ = Math.sin(angle * 1.2) * 0.1;
+
+    // Elegant, smaller bottle size (to prevent blocking text/scenery)
+    const targetScale = 0.65 + Math.sin(progress * Math.PI) * 0.08;
 
     // Apply lerped values
     bottleRef.current.position.x = lerp(bottleRef.current.position.x, targetX, 0.1);
@@ -152,13 +121,14 @@ function StylizedBottle({ progress }: { progress: number }) {
       <mesh castShadow receiveShadow>
         <latheGeometry args={[bottlePoints, 36]} />
         <meshPhysicalMaterial
-          color="#E31B23"
-          roughness={0.08}
-          transmission={0.65}
-          thickness={1.1}
+          color="#DC2626"
+          roughness={0.03}
+          metalness={0.05}
+          transmission={0.92}
+          thickness={1.6}
           clearcoat={1.0}
-          clearcoatRoughness={0.08}
-          ior={1.45}
+          clearcoatRoughness={0.02}
+          ior={1.52}
           transparent
         />
       </mesh>
@@ -173,11 +143,13 @@ function StylizedBottle({ progress }: { progress: number }) {
       <mesh ref={liquidRef} castShadow>
         <latheGeometry args={[liquidPoints, 36]} />
         <meshPhysicalMaterial
-          color="#730408"
-          roughness={0.12}
-          transmission={0.3}
-          thickness={0.6}
-          clearcoat={0.4}
+          color="#991B1B"
+          roughness={0.15}
+          metalness={0.0}
+          transmission={0.0}
+          opacity={0.98}
+          transparent={false}
+          clearcoat={0.2}
         />
       </mesh>
 
@@ -405,12 +377,12 @@ export default function StorytellingIsland() {
         {/* WebGL Canvas viewport */}
         <div className="w-full md:w-1/2 h-[50vh] md:h-screen relative z-10 bg-chamber/5 overflow-hidden">
           {/* Panoramic distribution scene background image transition */}
-          <div className="absolute inset-0 z-0 opacity-25 pointer-events-none transition-all duration-700 ease-in-out">
+          <div className="absolute inset-0 z-0 opacity-40 pointer-events-none transition-all duration-1000 ease-out">
             <Image
               src={BACKGROUND_IMAGES[activeStage] || "/images/hero_oman_transit.png"}
               alt="Logistics background scene"
               fill
-              className="object-cover filter grayscale contrast-125 brightness-50 transition-all duration-700 ease-in-out scale-105"
+              className="object-cover transition-all duration-1000 ease-out scale-105 brightness-[0.42] saturate-[0.75] contrast-[1.1]"
               priority={activeStage === 0}
             />
           </div>
@@ -443,8 +415,15 @@ export default function StorytellingIsland() {
               intensity={1.8}
             />
             
-            {/* Soft ground lighting for warehouse/highway theme */}
-            <gridHelper args={[10, 20, "#30363D", "#161B22"]} position={[0, -1.1, 0]} />
+            {/* Holographic scanner rings under the bottle */}
+            <mesh position={[0, -0.65, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+              <ringGeometry args={[0.35, 0.37, 64]} />
+              <meshBasicMaterial color="#E31B23" transparent opacity={0.35} side={THREE.DoubleSide} />
+            </mesh>
+            <mesh position={[0, -0.65, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+              <ringGeometry args={[0.2, 0.22, 64]} />
+              <meshBasicMaterial color="#E5A93C" transparent opacity={0.2} side={THREE.DoubleSide} />
+            </mesh>
             
             <Float speed={1.8} rotationIntensity={0.15} floatIntensity={0.2}>
               <StylizedBottle progress={progress} />
