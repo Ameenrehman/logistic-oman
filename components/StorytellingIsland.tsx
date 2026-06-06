@@ -229,9 +229,22 @@ export default function StorytellingIsland() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
   const [activeStage, setActiveStage] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect screen sizing
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Monitor the scroll progress of this container section
   useEffect(() => {
+    if (isMobile) return; // Disable scroll calculations on mobile fallback
+
     const handleScroll = () => {
       if (!containerRef.current) return;
       
@@ -254,7 +267,102 @@ export default function StorytellingIsland() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isMobile]);
+
+  if (isMobile) {
+    // 2D Mobile Fallback Sequence
+    return (
+      <section className="py-20 bg-obsidian border-y border-border-glass relative overflow-hidden">
+        {/* Radial grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#30363d10_1px,transparent_1px),linear-gradient(to_bottom,#30363d10_1px,transparent_1px)] bg-[size:25px_25px]" />
+        
+        <div className="relative z-10 px-4 max-w-lg mx-auto">
+          <div className="mb-10 text-center">
+            <span className="font-sans text-xs font-semibold tracking-widest text-crimson uppercase">
+              Distribution Timeline
+            </span>
+            <h2 className="mt-2 font-display text-2xl font-bold text-white">
+              The Journey of Refreshment
+            </h2>
+            <p className="mt-2 font-sans text-xs text-silver">
+              Swipe or scroll to preview our nationwide cold-chain distribution checkpoints.
+            </p>
+          </div>
+
+          {/* Horizontal scroll timeline deck */}
+          <div className="flex gap-6 overflow-x-auto pb-6 scrollbar-hide snap-x snap-mandatory">
+            {CHECKPOINTS.map((cp, idx) => {
+              const CPIcon = cp.icon;
+              return (
+                <div
+                  key={cp.title}
+                  className="w-[85vw] shrink-0 snap-center glass-panel rounded-lg p-6 bg-chamber/80 border border-border-glass flex flex-col justify-between min-h-[380px]"
+                >
+                  <div>
+                    {/* Header */}
+                    <div className="flex justify-between items-start mb-4">
+                      <span className="font-sans text-[10px] text-amber font-semibold uppercase tracking-wider block">
+                        {cp.subtitle}
+                      </span>
+                      <span className="font-display text-xs text-silver/40">0{idx + 1} / 06</span>
+                    </div>
+
+                    {/* Stylized 2D Graphic preview */}
+                    <div className="h-32 w-full bg-obsidian/40 border border-border-glass/40 rounded flex items-center justify-center mb-6 relative overflow-hidden">
+                      {/* Abstract moving road or bubbles representing the state */}
+                      <svg className="w-16 h-28" viewBox="0 0 100 200">
+                        <rect x="30" y="50" width="40" height="120" rx="10" fill="#E31B23" fillOpacity="0.4" stroke="#E31B23" strokeWidth="2" />
+                        <rect x="42" y="15" width="16" height="35" rx="3" fill="#E31B23" fillOpacity="0.4" stroke="#E31B23" strokeWidth="2" />
+                        <rect x="40" y="5" width="20" height="10" rx="2" fill="#E5A93C" />
+                        <rect x="34" y="65" width="32" height="100" rx="8" fill="#9A0F14" />
+                        {/* Bubbles */}
+                        <circle cx="45" cy="120" r="2" fill="#FFF" opacity="0.6" />
+                        <circle cx="55" cy="95" r="3" fill="#FFF" opacity="0.8" />
+                        <circle cx="50" cy="140" r="1.5" fill="#FFF" opacity="0.4" />
+                      </svg>
+                      {/* Pulse indicators */}
+                      <div className="absolute top-2 right-2 flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-crimson opacity-75" />
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-crimson" />
+                      </div>
+                    </div>
+
+                    <h3 className="font-display text-lg font-bold text-white mb-2">
+                      {cp.title}
+                    </h3>
+                    <p className="font-sans text-xs text-silver leading-relaxed">
+                      {cp.desc}
+                    </p>
+                  </div>
+
+                  {/* Footer metric */}
+                  <div className="mt-6 pt-4 border-t border-border-glass/60 flex items-center gap-2.5">
+                    <div className="flex h-8 w-8 items-center justify-center rounded bg-obsidian border border-border-glass text-amber">
+                      <CPIcon className="h-4 w-4" />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="font-sans text-[8px] text-silver uppercase">SLA Standard</span>
+                      <span className="font-display text-xs font-bold text-white">{cp.stat}</span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Swipe indicator helper */}
+          <div className="flex justify-center gap-1.5 mt-4">
+            {CHECKPOINTS.map((_, idx) => (
+              <span
+                key={idx}
+                className="h-1.5 w-1.5 rounded-full bg-border-glass"
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   const activeCheckpoint = CHECKPOINTS[activeStage];
   const Icon = activeCheckpoint.icon;
