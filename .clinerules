@@ -1,0 +1,12 @@
+# Roo Cline Rules for Beverage Logistics Oman Website
+
+You are building a premium, enterprise-grade beverage logistics website for the largest beverage transportation and distribution company in Oman.
+
+Please refer to the detailed instructions in the `.agent/instructions.md` and the master roadmap in `plan.md` before writing any code.
+
+## Key Directives:
+1. **Follow the Stages Strictly**: Do not build code until Stage 4. Complete Stage 0, 1, 2, and 3 first.
+2. **Tech Stack**: Next.js 15, TypeScript, Tailwind CSS, Framer Motion, and React Three Fiber.
+3. **Quality Bar**: Apple-level polish, Stripe-level clarity, DHL-level credibility.
+4. **Isolated WebGL**: The Three.js canvas exists ONLY inside a specific storytelling section. It must not control or slow down the rest of the website.
+5. **No Placeholders**: Do not use placeholder images. Use assets generated during Stage 1.
