@@ -1,10 +1,25 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ShieldCheck, CheckCircle2, ChevronDown } from "lucide-react";
+import dynamic from "next/dynamic";
+import { ArrowRight, ShieldCheck, ChevronDown } from "lucide-react";
 import TrustDashboard from "@/components/TrustDashboard";
 import ServicesPanel from "@/components/ServicesPanel";
 import TelemetryMap from "@/components/TelemetryMap";
 import RfqForm from "@/components/RfqForm";
+
+const StorytellingIsland = dynamic(() => import("@/components/StorytellingIsland"), {
+  ssr: false,
+  loading: () => (
+    <div className="h-screen w-full bg-obsidian flex items-center justify-center border-b border-border-glass">
+      <div className="text-center space-y-4">
+        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-crimson mx-auto"></div>
+        <p className="font-sans text-xs text-silver">Loading Storytelling Island Engine...</p>
+      </div>
+    </div>
+  ),
+});
 
 export default function Home() {
   return (
@@ -75,56 +90,8 @@ export default function Home() {
       {/* 2. TRUST & METRICS DASHBOARD */}
       <TrustDashboard />
 
-      {/* 3. THREE.JS storytelling island placeholder section */}
-      <section className="py-24 bg-obsidian border-b border-border-glass relative overflow-hidden flex flex-col items-center justify-center min-h-[500px]">
-        {/* Radial grid layout */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#30363d12_1px,transparent_1px),linear-gradient(to_bottom,#30363d12_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
-        <div className="absolute inset-0 bg-radial-at-c from-amber/5 via-transparent to-transparent pointer-events-none" />
-
-        <div className="relative z-10 mx-auto max-w-4xl px-4 text-center">
-          <span className="font-sans text-xs font-semibold tracking-widest text-amber uppercase">
-            3D Storytelling Experience
-          </span>
-          <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            The Journey of Refreshment Across Oman
-          </h2>
-          <p className="mt-4 font-sans text-base text-silver/80 max-w-xl mx-auto">
-            Our upcoming interactive WebGL engine maps the exact timeline of a beverage bottle—from Rusayl production facilities, storage vaults, to consumer refreshment.
-          </p>
-
-          {/* Graphical placeholder representing a premium WebGL loader */}
-          <div className="mt-12 glass-panel rounded-lg p-10 max-w-2xl mx-auto border border-dashed border-border-glass bg-chamber/50 relative overflow-hidden flex flex-col items-center gap-6">
-            <div className="relative flex h-16 w-16 items-center justify-center rounded-full border border-amber/30 bg-amber/5 text-amber animate-pulse">
-              <span className="absolute inline-flex h-full w-full rounded-full bg-amber/10 opacity-70 animate-ping" />
-              <ShieldCheck className="h-8 w-8" />
-            </div>
-            
-            <div className="space-y-1">
-              <span className="font-display text-lg font-bold text-white block">
-                Three.js Storytelling Island
-              </span>
-              <span className="font-sans text-xs text-silver block">
-                WebGL initialization pending Stage 5 integration.
-              </span>
-            </div>
-            
-            <div className="flex flex-wrap justify-center gap-4 text-xs font-sans text-silver">
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded bg-obsidian border border-border-glass">
-                <CheckCircle2 className="h-3.5 w-3.5 text-crimson" /> Production Line
-              </div>
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded bg-obsidian border border-border-glass">
-                <CheckCircle2 className="h-3.5 w-3.5 text-crimson" /> Warehouse
-              </div>
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded bg-obsidian border border-border-glass">
-                <CheckCircle2 className="h-3.5 w-3.5 text-crimson" /> Transit Fleet
-              </div>
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded bg-obsidian border border-border-glass">
-                <CheckCircle2 className="h-3.5 w-3.5 text-crimson" /> Destination
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 3. THREE.JS STORYTELLING ISLAND */}
+      <StorytellingIsland />
 
       {/* 4. SERVICES PANEL */}
       <ServicesPanel />
