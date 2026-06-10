@@ -43,3 +43,6 @@ next-env.d.ts
 # Yac Extractions
 yac_extracted/*
 yac.zip
+
+#firebase
+.firebase/*
